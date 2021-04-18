@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body{
+  background-color: slateblue;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.App{
+  background-color: #3f3160;
+  min-height: 200px;
+  width: 400px;
+  margin: 40px auto;
+}
+
+.inputclass{
+  background-color: white;
+  border: 0;
+  width: 200px;
+  height: 50px;
+  padding: 0 20px;
+  margin: 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  color: black;
+}
+
+.input-label{
   color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 90px;
 }
 
-.App-link {
-  color: #61dafb;
+.submit-button{
+  height: 50px;
+  width: 80px;
+  border-radius: 5px;
+  border: 0;
+  background-color: cadetblue;
+  cursor: pointer;
+  font-weight: bolder;
+  color: white;
+  margin-left: 90px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input:focus,button:focus,textarea:focus{
+  outline: none;
+}
+.list{
+  color: white;
+  width: 350px;
+  background-color: magenta;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+.list li{
+  padding: 10px;
+}
+#delete-button{
+  cursor: pointer;
+  
+  height: 30px;
+  width: 50px;
+  border-radius: 5px;
+  border: 0;
+  background-color: cadetblue;
+  cursor: pointer;
+  font-weight: bolder;
+  color: white;
+  padding: 5px;
+  display: inline;
+  float: right;
+  margin-right: 10px;
+}
+#edit-button{
+  height: 30px;
+  width: 50px;
+  border-radius: 5px;
+  border: 0;
+  background-color: cadetblue;
+  cursor: pointer;
+  font-weight: bolder;
+  color: white;
+  padding : 5px;
+  display: inline;
+  float: right;
+}
+.list-btn{
+  display : flow-root;
 }
