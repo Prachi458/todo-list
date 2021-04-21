@@ -7,12 +7,7 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      data : [
-        {
-          title : 'React',
-          description : 'React is a javacsript library',
-        }
-      ],
+      data : [],
       title : '',
       description : '',
       editItem : false,
@@ -26,46 +21,61 @@ class App extends React.Component{
   };
   addRecord = (event) => {
     event.preventDefault();
-    const updatedData = [...this.state.data, {title : this.state.title, description : this.state.description}];
-    this.setState({
+    if(!(this.state.itemIndex) && (this.state.itemIndex!==0)){
+      let updatedData = [...this.state.data, {title : this.state.title, description : this.state.description}];
+      //console.log(updatedData);
+      return this.setState({
       data : updatedData,
-      editItem : false
-    }); 
+      editItem : false,
+      title : '',
+      description : '',
+      });
+    }else{
+      if(!isNaN(this.state.itemIndex)){
+        let updatedData = this.state.data.map((item, idx) => idx === this.state.itemIndex ? { title: this.state.title, description: this.state.description } : item);
+        console.log(updatedData);
+        this.setState({
+          data : updatedData,
+          editItem : false,
+          title : '',
+          description : '',
+          itemIndex : null
+      });
+    }
+   }
     event.target.reset();
    };
    handleDelete = (e) => {
-     const updatedData = this.state.data.filter((item,index) => index !== e);
+     let updatedData = this.state.data.filter((item,index) => index !== e);
      this.setState({data : updatedData});
    };
-   handleEdit = (e) => {
-    const updatedData = this.state.data.filter((item,index) => index !== e);
-    const selectedItem = this.state.data.find((item,index) => index === e);
-    console.log(selectedItem);
+   handleEdit = (e,index) => {
+    let selectedItem = this.state.data.find((item,index) => index === e);
+    let Index = this.state.data.findIndex((item,index) => index === e);
+    //console.log(selectedItem);
     this.setState({
-      data : updatedData,
       editItem : true,
-      title : selectedItem,
-      //description
+      title : selectedItem.title,
+      description : selectedItem.description,
+      itemIndex : Index,
     });
-   };
+  };
   render(){
     return(
       <div>
       <div>
-      <ToDoForm title={this.state.data} description={this.state.data} editItem={this.state.editItem}
+      <ToDoForm title={this.state.title} description={this.state.description} editItem={this.state.editItem}
         handleTitle ={this.handleTitle} handleDescription={this.handleDescription} addRecord={this.addRecord}/>
-         {this.state.data.map((item,index) => {
+      {this.state.data.map((item,index) => {
         return(
           <div className="list-btn">
-          <ul className="list"><li>{item.title} &nbsp; : &nbsp; {item.description}</li></ul>
+          <ul className="list"><li>{item.title} : <br/> {item.description}</li></ul>
           <span><button  id="edit-button"  onClick={ () => this.handleEdit(index)}>edit</button>
           <button  id="delete-button"  onClick={ () => this.handleDelete(index)}>delete</button></span>
           </div>
-          );
+        );
         })
-        }
-     
-
+      }
       </div>
       </div>
     );

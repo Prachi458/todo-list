@@ -55,7 +55,6 @@ input:focus,button:focus,textarea:focus{
 }
 #delete-button{
   cursor: pointer;
-  
   height: 30px;
   width: 50px;
   border-radius: 5px;
